@@ -338,6 +338,7 @@ def run_trial(solve_function_name, number_of_agents, number_of_problems, number_
 		elif data[0] == -1:
 			fails += 1
 		trials -= 1
+		print str(trials)+' trials left.'
 	steps_mean = steps_total/len(steps)
 	problems_solved_mean = problems_solved_total/len(problems_solved)
 	return [steps, problems_solved, fails, steps_mean, problems_solved_mean]
@@ -345,37 +346,41 @@ def run_trial(solve_function_name, number_of_agents, number_of_problems, number_
 # RUN
 number_of_agents = 100
 number_of_problems = 100
-number_of_trials = 200
+number_of_trials = 2000
 
 paradox_data = run_trial(paradox_solve, number_of_agents, number_of_problems, number_of_trials)
 technocracy_data = run_trial(technocracy_solve, number_of_agents, number_of_problems, number_of_trials)
-steps_range = (0, 200)
+steps_range = (40, 160)
 bins = 50
-problems_range = (0, 100)
-plt.rcParams["axes.titlesize"] = 12
+problems_range = (10, 100)
+plt.rcParams["font.size"] = 12
+plt.rcParams["axes.titlesize"] = 20
+plt.rcParams["axes.labelsize"] = 16
 
 # Paradox Graphs
 # Steps
 plt.figure(1, figsize=(9,9))
 plt.hist(paradox_data[0], bins, steps_range, color='purple', histtype='bar', rwidth=0.8)
 plt.xlabel('Steps')
-plt.ylabel('Trials')
+plt.ylabel('Trials (2000 total)')
 plt.title(
-	'Paradox - Steps to Solve Top 10 Preferred Problems (mean = '+str(paradox_data[3])+')', 
+	'Two-layered - Steps (mean = '+str(paradox_data[3])+')', 
 	y=1.04)
-plt.axis([0, 200, 0, int(number_of_trials*.35)])
-plt.xticks(np.arange(0, 200, step=20))
+plt.axis([40, 160, 0, int(number_of_trials*.25)])
+plt.xticks(np.arange(40, 160, step=20))
+plt.axvline(paradox_data[3], color='k', linestyle='dashed', linewidth=1)
 
 # Problems Solved
 plt.figure(2, figsize=(9,9))
 plt.hist(paradox_data[1], bins, problems_range, color='purple', histtype='bar', rwidth=0.8)
 plt.xlabel('Problems Solved')
-plt.ylabel('Trials')
+plt.ylabel('Trials (2000 total)')
 plt.title(
-	'Paradox - Total Problems Solved to Solve Top 10 Preferred Problems (mean = '+str(paradox_data[4])+')', 
+	'Two-layered - Total Problems Solved (mean = '+str(paradox_data[4])+')', 
 	y=1.04)
-plt.axis([0, 100, 0, int(number_of_trials*.35)])
-plt.xticks(np.arange(0, 100, step=10))
+plt.axis([10, 100, 0, int(number_of_trials*.25)])
+plt.xticks(np.arange(10, 100, step=10))
+plt.axvline(paradox_data[4], color='k', linestyle='dashed', linewidth=1)
 
 
 # Technocracy Graphs
@@ -383,23 +388,25 @@ plt.xticks(np.arange(0, 100, step=10))
 plt.figure(3, figsize=(9,9))
 plt.hist(technocracy_data[0], bins, steps_range, color='yellow', histtype='bar', rwidth=0.8)
 plt.xlabel('Steps')
-plt.ylabel('Trials')
+plt.ylabel('Trials (2000 total)')
 plt.title(
-	'Technocracy - Steps to Solve Top 10 Preferred Problems (mean = '+str(technocracy_data[3])+')',
+	'Experts-only - Steps (mean = '+str(technocracy_data[3])+')',
 	y=1.04)
-plt.axis([0, 200, 0, int(number_of_trials*.35)])
-plt.xticks(np.arange(0, 200, step=20))
+plt.axis([40, 160, 0, int(number_of_trials*.25)])
+plt.xticks(np.arange(40, 160, step=20))
+plt.axvline(technocracy_data[3], color='k', linestyle='dashed', linewidth=1)
 
 # Problems Solved
 plt.figure(4, figsize=(9,9))
 plt.hist(technocracy_data[1], bins, problems_range, color='yellow', histtype='bar', rwidth=0.8)
 plt.xlabel('Problems Solved')
-plt.ylabel('Trials')
+plt.ylabel('Trials (2000 total)')
 plt.title(
-	'Technocracy - Total Problems Solved to Solve Top 10 Preferred Problems (mean = '+str(technocracy_data[4])+')', 
+	'Experts-only - Total Problems Solved (mean = '+str(technocracy_data[4])+')', 
 	y=1.04)
-plt.axis([0, 100, 0, int(number_of_trials*.35)])
-plt.xticks(np.arange(0, 100, step=10))
+plt.axis([10, 100, 0, int(number_of_trials*.25)])
+plt.xticks(np.arange(10, 100, step=10))
+plt.axvline(technocracy_data[4], color='k', linestyle='dashed', linewidth=1)
 
 plt.show()
 
