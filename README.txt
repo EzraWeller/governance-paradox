@@ -14,7 +14,7 @@ The goal is to solve the agents' top 10 preferred problems in the fewest steps (
 and the fewest total problems solved (resources).
 
 Three algorithms are tested here:
-1) "Paradox" - Meant to solve the paradox of democracy requiring each group member to have equal influence 
+1) "Two-layered" - Meant to solve the paradox of democracy requiring each group member to have equal influence 
 to be fair and experts to have extra influence to be effective, this algorithm first discovers the top 10 
 preferred problems in as few steps as it can, then asks only the experts in those problems to solve them.
 
