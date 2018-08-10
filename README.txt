@@ -18,7 +18,7 @@ Three algorithms are tested here:
 to be fair and experts to have extra influence to be effective, this algorithm first discovers the top 10 
 preferred problems in as few steps as it can, then asks only the experts in those problems to solve them.
 
-2) "Technocracy" - Simply asks the experts in each problem to solve it. This algorithm saves time by not 
+2) "Experts-only" - Simply asks the experts in each problem to solve it. This algorithm saves time by not 
 bothering with preferences but has to solve way more than the required 10 problems since it knows nothing 
 about preferences.
 
